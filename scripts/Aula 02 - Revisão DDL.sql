@@ -40,8 +40,8 @@ alter table funcionario
 alter column endereco set default 'Macau-RN';
 
 -- Excluir um valor padrão DEFAULT
-alter table funcionario
-alter column endereco drop default;
+-- alter table funcionario
+-- alter column endereco drop default;
 
 -- Adicionar restrição (constraint) CHECK
 alter table funcionario
@@ -63,3 +63,16 @@ on delete no action
 on update cascade;
 
 -- TO DO: adicionar restrições FK para cpf_supervisor e cpf_gerente
+alter table funcionario
+add constraint funcionario_sup_fk
+foreign key (cpf_supervisor)
+references funcionario(cpf)
+on delete set null
+on update cascade;
+
+alter table departamento
+add constraint departamento_gerente_fk
+foreign key (cpf_gerente)
+references funcionario(cpf)
+on delete set null
+on update cascade;
