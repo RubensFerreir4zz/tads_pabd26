@@ -40,3 +40,20 @@ where cpf in ('22233344455');
 update funcionario
 set numero_departamento = 3
 where cpf in ('33344455566');
+
+update departamento
+set nome = 'Financeiro'
+where nome = 'Fianceiro';
+
+update funcionario
+set cpf_supervisor = (
+    select cpf
+    from funcionario
+    where pnome = 'João' and unome = 'Heli'
+)    
+where cpf_supervisor is null;
+
+update funcionario
+set cpf_supervisor = null
+where cpf_supervisor = cpf;
+
